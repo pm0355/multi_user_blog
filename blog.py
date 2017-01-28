@@ -17,12 +17,13 @@ from handlers.login import LoginHandler
 from handlers.logout import LogoutHandler
 from handlers.post import PostHandler
 from handlers.newpost import NewPostHandler
-
+from handlers.editpost import EditPostHandler
 
 
 app = WSGIApplication([
                                ('/blog/?', BlogFrontHandler),
                                ('/blog/([0-9]+)', PostHandler),
+                               ('/blog/editpost/([0-9]+)', EditPostHandler),
                                ('/blog/newpost', NewPostHandler),
                                ('/signup', SignupHandler),
                                ('/login', LoginHandler),
