@@ -20,14 +20,16 @@ class EditPostHandler(BlogHandler):
         if not self.user:
             self.redirect('/blog')
 
-            subject = self.request.get('subject')
+        if self.user:    
             content = self.request.get('content')
 
-            if subject and content:
+            if content:
+                key = db.Key.from_path('Post', int(post_id), parent=blog_key())
+                post = db.get(key)
+
+                post.content = content
+
                 post.put()
                 self.redirect('/blog/%s' % str(post.key().id()))
-            else:
-                error = "subject and content, please!"
-                self.render("editpost.html", subject=subject, content=content, error=error)
 
 #http://localhost:8080/blog/editpost/5066549580791808
