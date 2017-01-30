@@ -8,8 +8,8 @@ class EditPostHandler(BlogHandler):
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
         post = db.get(key)
 
-        if self.user:
-            self.render("editpost.html",subject=post.subject,content=post.content,post_id=post_id)
+        if self.user.key().id() == post.user_id:
+            self.render("editpost.html",subject=post.subject,content=post.content, post_id=post_id)
         else:
             self.redirect("/login")
 
@@ -20,7 +20,8 @@ class EditPostHandler(BlogHandler):
         if not self.user:
             self.redirect('/blog')
 
-        if self.user:    
+        if self.user.key().id() == post.user_id:
+            subject= self.request.get('subject')
             content = self.request.get('content')
 
             if content:
@@ -31,5 +32,7 @@ class EditPostHandler(BlogHandler):
 
                 post.put()
                 self.redirect('/blog/%s' % str(post.key().id()))
+
+
 
 #http://localhost:8080/blog/editpost/5066549580791808
