@@ -6,7 +6,7 @@ from helpers import *
 # Models
 from models.user import User
 from models.post import Post
-
+from models.like import Like
 
 
 # Handlers
@@ -19,13 +19,14 @@ from handlers.post import PostHandler
 from handlers.newpost import NewPostHandler
 from handlers.editpost import EditPostHandler
 from handlers.deletepost import DeletePostHandler
-
+from handlers.likepost import LikePostHandler
 app = WSGIApplication([
                                ('/blog/?', BlogFrontHandler),
                                ('/blog/([0-9]+)', PostHandler),
                                ('/blog/editpost/([0-9]+)', EditPostHandler),
                                ('/blog/deletepost/([0-9]+)', DeletePostHandler),
                                ('/blog/newpost', NewPostHandler),
+                               ('/blog/like/([0-9]+)', LikePostHandler),
                                ('/signup', SignupHandler),
                                ('/login', LoginHandler),
                                ('/logout', LogoutHandler),
