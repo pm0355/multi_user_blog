@@ -24,6 +24,6 @@ class AddCommentHandler(BlogHandler):
         c = Comment(parent=key, user_id=int(self.user.key().id()), content=content, user_name=user_name)
         c.put()
         
-        self.redirect('/blog/%s' % str(p.key().id()))
+        self.redirect('/blog/%s' % str(post_id))
 
         # melinda and hari patel mark sterit 2:30pm
