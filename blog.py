@@ -21,6 +21,7 @@ from handlers.editpost import EditPostHandler
 from handlers.deletepost import DeletePostHandler
 from handlers.likepost import LikePostHandler
 from handlers.addcomment import AddCommentHandler
+from handlers.editcomment import EditCommentHandler
 
 app = WSGIApplication([
                                ('/blog/?', BlogFrontHandler),
@@ -30,6 +31,7 @@ app = WSGIApplication([
                                ('/blog/newpost', NewPostHandler),
                                ('/blog/like/([0-9]+)', LikePostHandler),
                                ('/blog/addcomment/([0-9]+)',AddCommentHandler),
+                               ('/blog/editcomment/([0-9]+)',EditCommentHandler),
                                ('/signup', SignupHandler),
                                ('/login', LoginHandler),
                                ('/logout', LogoutHandler),
