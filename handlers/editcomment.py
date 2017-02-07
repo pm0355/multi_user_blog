@@ -33,7 +33,7 @@ class EditCommentHandler(BlogHandler):
             content = self.request.get('content')
             user_name = self.user.name
             if content:
-                c = Comment(parent=key, user_id=int(self.user.key().id()), content=content, user_name=user_name)
+                c = Comment(parent=comment_key, user_id=int(self.user.key().id()), content=content, user_name=user_name)
                 c.put()
         
                 self.redirect('/blog/%s' % str(post_id))
